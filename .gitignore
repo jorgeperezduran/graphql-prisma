@@ -1,0 +1,17 @@
+.vscode/
+# OSX
+#
+.DS_Store
+# IntelliJ
+#
+.idea
+# node.js
+#
+my-yoga-server/node_modules/
+my-yoga-server/yarn.lock
+
+npm-debug.log
+
+# custom
+apps/
+*.log

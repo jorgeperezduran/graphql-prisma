@@ -1,0 +1,41 @@
+directive @unique on OBJECT | FIELD_DEFINITION
+type User {
+  id: ID! @unique
+  email: String! @unique
+  name: String!
+  username: String
+  company: String
+  gender: String
+  posts: [Post!]!
+  albums: [Album!]!
+}
+
+type Post {
+  id: ID! @unique
+  title: String!
+  content: String!
+  published: Boolean! @default(value: "false")
+  author: User!
+  comments: [Comment!]!
+}
+
+type Comment {
+  id: ID! @unique
+  body: String!
+  post: Post!
+}
+
+type Album {
+  id: ID! @unique
+  title: String!
+  user: User!
+  photos: [Photo!]!
+}
+
+type Photo {
+  id: ID! @unique
+  title: String!
+  url: String!
+  album: Album!
+}
+

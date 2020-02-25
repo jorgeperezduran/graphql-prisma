@@ -1,0 +1,64 @@
+# import Post from './generated/prisma.graphql'
+# import User from './generated/prisma.graphql'
+# import Comment from './generated/prisma.graphql'
+
+type Query {
+  getUser(id: ID!): User
+  listUsers(searchString: String): [User]
+  getPost(id: ID!): Post
+  listPosts(searchString: String): [Post]
+  getComment(id: ID!): Comment
+  listComments(searchString: String): [Comment]
+  getAlbum(id: ID!): Album
+  listAlbums(searchString: String): [Album]
+  getPhoto(id: ID!): Photo
+  listPhotos(searchString: String): [Photo]
+}
+
+type Mutation {
+  createPost(authorId: ID!, title: String!, content: String!): Post
+  publishPost(id: ID!): Post
+  deletePost(id: ID!): Post
+  createUser(name: String!, email:String!): User!
+  updateUser(id:ID!,input:UpdateUserInput!): User!
+  deleteUser(id:ID!): User!
+  createComment(postId: ID!, body: String!): Comment
+  updateComment(id:ID!, body:String!): Comment
+  deleteComment(id:ID!): Comment
+  createAlbum(input: CreateAlbumInput!): Album
+  createPhoto(input: CreatePhotoInput!): Photo
+  deleteAlbum(id:ID!): Album
+  deletePhoto(id:ID!): Photo
+  updateAlbumTitle(id:ID!, title: String!): Album
+  updatePhoto(id:ID!, input: UpdatePhotoInput!): Photo
+}
+
+input UpdateUserInput {
+  name: String
+  username: String
+  email: String
+  company: String
+  gender: Gender
+}
+
+input UpdatePhotoInput {
+  title: String!
+  url: String
+}
+
+input CreateAlbumInput {
+  title: String!
+  userId: ID!
+}
+
+input CreatePhotoInput {
+  title: String!
+  url: String!
+  albumId: ID!
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
